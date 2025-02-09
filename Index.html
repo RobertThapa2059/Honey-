@@ -91,6 +91,17 @@
             animation: heartbeat 1.5s infinite, colorChange 5s infinite alternate;
         }
 
+        /* Style for the additional message */
+        .love-message {
+            font-size: 1.25rem;
+            color: #333;
+            max-width: 80%;
+            margin-top: 15px;
+            line-height: 1.5;
+            font-weight: 400;
+            animation: float 3s ease-in-out infinite;
+        }
+
         /* Keyframes for animations */
         @keyframes float {
             0%, 100% {
@@ -252,6 +263,12 @@
             loveHeader.textContent = "I Love You Honey!";
             loveHeader.classList.add("love-header");
             container.appendChild(loveHeader);
+
+            // Create and display the message
+            const loveMessage = document.createElement("p");
+            loveMessage.textContent = "You just filled my heart with more happiness than I ever thought possible! 💖 From the moment you became a part of my life, you’ve been my greatest blessing—my strength, my joy, and my safe place. You know my past, my flaws, my mistakes, yet you’ve never let them define the way you see me. Instead, you’ve stood by me, believed in me, and loved me for who I truly am. And that means everything to me.\n\nBut today, I want you to know something even more important: You are not just my Valentine for a day—you are my forever. My heart chooses you, today and always. I want to walk this journey of life with you, hand in hand, through every joy, every challenge, and every beautiful moment in between. Let’s create a love story that lasts a lifetime. ❤️✨";
+            loveMessage.classList.add("love-message");
+            container.appendChild(loveMessage);
 
             // Hide the "No" button after Yes is clicked
             btnNo.style.display = "none";
