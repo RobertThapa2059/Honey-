@@ -28,6 +28,7 @@
             font-family: 'Pacifico', cursive;
         }
 
+        /* Style the header message */
         .header-message {
             font-size: 3.5rem;
             color: #ff6b6b;
@@ -42,18 +43,21 @@
             max-width: 500px;
         }
 
+        /* Style for first image (big image) */
         .image-1 {
             width: 100%;
             max-width: 100%;
             animation: shake 2s ease-in-out infinite, glow 3s infinite alternate;
         }
 
+        /* Style for second image (small image) */
         .image-2 {
             width: 250px;
             max-width: 250px;
             animation: popIn 1s ease-out, float 3s ease-in-out infinite;
         }
 
+        /* Style the buttons */
         .btn {
             min-width: 120px;
             padding: 0.75rem 1rem;
@@ -67,17 +71,18 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .btn:hover {
-            background-color: #f7a1c3;
-            transform: scale(1.1);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-        }
+            .btn:hover {
+                background-color: #f7a1c3;
+                transform: scale(1.1);
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            }
 
         .btn-no {
             position: absolute;
             transition: top 0.5s ease, left 0.5s ease;
         }
 
+        /* Style for the "I Love You" header */
         .love-header {
             font-size: 3rem;
             color: red;
@@ -86,44 +91,97 @@
             animation: heartbeat 1.5s infinite, colorChange 5s infinite alternate;
         }
 
+        /* Keyframes for animations */
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-            20%, 40%, 60%, 80% { transform: translateX(10px); }
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-10px);
+            }
+
+            20%, 40%, 60%, 80% {
+                transform: translateX(10px);
+            }
         }
 
         @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         @keyframes heartbeat {
-            0% { transform: scale(1); }
-            20% { transform: scale(1.25); }
-            40% { transform: scale(1); }
-            60% { transform: scale(1.15); }
-            80% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            20% {
+                transform: scale(1.25);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.15);
+            }
+
+            80% {
+                transform: scale(1);
+            }
         }
 
         @keyframes confetti {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
         }
 
         @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5)); }
-            50% { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.8)); }
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.8));
+            }
         }
 
         @keyframes colorChange {
-            0% { color: #ff6b6b; }
-            50% { color: #ff4757; }
-            100% { color: #ff6b6b; }
+            0% {
+                color: #ff6b6b;
+            }
+
+            50% {
+                color: #ff4757;
+            }
+
+            100% {
+                color: #ff6b6b;
+            }
         }
     </style>
 </head>
@@ -168,35 +226,37 @@
             const distanceY = mouseY - btnY;
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-            const maxMoveDistance = 100;
-            const moveDistance = Math.min(maxMoveDistance, (1 / distance) * 200);
+            // Increase the distance the button moves when closer to the cursor
+            const maxMoveDistance = 100; // The maximum distance the button will move
+            const moveDistance = Math.min(maxMoveDistance, (1 / distance) * 200); // Move farther when the cursor is closer
 
             let newTop = getRandomNumber(0, containerHeight - btnHeight);
             let newLeft = getRandomNumber(0, containerWidth - btnWidth);
 
+            // Make it move faster the closer the cursor is
             btnNo.style.top = `${newTop + (moveDistance * (Math.random() < 0.5 ? -1 : 1))}px`;
             btnNo.style.left = `${newLeft + (moveDistance * (Math.random() < 0.5 ? -1 : 1))}px`;
         });
 
+        // Event for Yes button click
         btnYes.addEventListener("click", () => {
+            // Hide the header message and the first image
             headerMessage.style.display = "none";
             imageOne.classList.add("hide");
 
+            // Show the second image
             imageTwo.classList.remove("hide");
 
+            // Create and display the "I Love You" header
             const loveHeader = document.createElement("h1");
             loveHeader.textContent = "I Love You Honey!";
             loveHeader.classList.add("love-header");
-
-            const loveMessage = document.createElement("h5");
-            loveMessage.textContent = "You just filled my heart with more happiness than I ever thought possible! 💖 From the moment you became a part of my life, you’ve been my greatest blessing—my strength, my joy, and my safe place...";
-            loveMessage.classList.add("love-header");
-
             container.appendChild(loveHeader);
-            container.appendChild(loveMessage);
 
+            // Hide the "No" button after Yes is clicked
             btnNo.style.display = "none";
 
+            // Add confetti effect
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement("div");
                 confetti.style.position = "absolute";
